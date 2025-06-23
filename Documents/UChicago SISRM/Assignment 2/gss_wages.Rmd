@@ -1,0 +1,132 @@
+---
+title: "Assignment 2"
+author: "Jean Clipperton"
+date: "`r Sys.Date()`"
+output: 
+  html_document:
+    theme: flatly
+    toc: yes
+    toc_float:
+      collapsed: true
+---
+
+```{r setup, include=FALSE}
+knitr::opts_chunk$set(echo = FALSE, warning = FALSE)
+```
+
+## Assignment 2
+We have a framework below -- complete it to finish this assignment. 
+
+### Load packages
+
+```{r loading}
+library(tidyverse)
+library(stevedata)
+library(knitr)
+library(psych)
+data(gss_wages)
+```
+
+## Explore the data
+We are using a sample of GSS data. To learn more, [see this dataset description here](https://r-packages.io/datasets/gss_wages).
+
+### Very specific questions
+1. Load and describe the dataframe 'gss_wages'
+
+```{r}
+#Load and describe dataframe
+data("gss_wages")
+summary(gss_wages)
+```
+
+
+1. Generate a data frame that summarizes the number of women and men per education category Print the data frame as a formatted `kable()` table.
+```{r}
+#Create Dataframe
+gender_edu_table <- gss_wages %>%
+  group_by(gender, educcat) %>%
+    summarise(count = n(), .groups = 'drop') %>%
+  tidyr::pivot_wider(names_from = gender, values_from = count, values_fill = 0)
+#Create Table
+kable(gender_edu_table,
+      caption = "# of Women and Men by Education Category")
+      col.names = c("Education", "Men", "Women")
+
+```
+
+
+
+1. Generate a boxplot visualizing the wages of individuals, by recoded occupational category.
+
+```{r}
+#Load ggplot package
+library(ggplot2)
+
+#Make Boxplot
+ggplot(gss_wages,aes(x = occrecode,y = realrinc))+
+  geom_boxplot(fill = "skyblue", color = "black")+
+labs (
+  title = "Wages of Individuals by Occupation Category",
+  x = "Occupation Category",
+  y = "Wages",
+  
+) +
+theme_minimal() +
+theme(axis.text.x = element_text(angle = 45, hjust = 1))
+
+
+
+```
+
+
+
+1. Generate a bar chart that identifies the total number of children by each education category. The bars should be sorted from highest to lowest.
+
+```{r}
+#Generating Bar Chart
+ggplot(gss_wages, aes(x=childs, y=educcat))+
+  geom_bar(stat = "identity", fill = "steelblue")+
+  labs(
+    title = "# of Children by Education Category",
+    x = "# of Children",
+    y = "Education Level",
+  ) +
+  theme_minimal() +
+  theme(axis.text.x = element_text(angle = 45, hjust = 1))
+  
+```
+
+
+### More open-ended questions
+
+Answer the following questions. Generate appropriate figures/tables to support your conclusions.
+
+1. How many women and how many men have a high school education? 
+
+There are 31,713 women and men w/ a high school education
+
+
+
+1. How does the distribution of wages vary across the different (recoded) occupations? Reorder your chart from above to sort from lowest to highest median. 
+
+It seems that th jobs one would associate with a higher level of education have higher incomes than those that do not.
+
+
+### Very open-ended questions
+
+Answer the following questions. Generate appropriate figures/tables to support your conclusions. Provide 1-2 paragraphs of written interpretation of your results for each question. Graphs and/or tables alone will not be sufficient to answer these questions. You will be graded on your code and your analysis. 
+
+1. We generated total number of children by category. Is this helpful to understand the question of whether people with different educational backgrounds have more children? Explain why or why not, and include any supplemental visualizations you wish.
+
+It is helpful to know. Perhaps to add on we could do a regression model. That might show us if there is any statistical significance to the relationship b/w educational levels and the number of children someone has.
+
+1. Consider the findings regarding income and occupation. What additional variable might you use to help you uncover any additional underlying trends? Be specific and provide additional visualizations and/or tables as needed. 
+
+We could add education to the levels of income and occupation. It is likely one's education could correlate with their income. We could make a bar chart sorting income by education level to see the differences in distribution b/w the 2 groups.
+
+
+### AI / Resources statement. 
+All assignments need about one paragraph describing the resources you used (including links and prompts, as relevant) in completing the assignment. This helps us learn about your process. Include this in your assignment submission. 
+
+I have conducted a few projects in R while at a program this summer. To create the ggplot, I was missing the last 2 lines of code and used past assignments as reference.
+
