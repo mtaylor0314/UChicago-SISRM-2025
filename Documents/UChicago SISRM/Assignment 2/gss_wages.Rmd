@@ -1,6 +1,6 @@
 ---
 title: "Assignment 2"
-author: "Jean Clipperton"
+author: "Max Taylor"
 date: "`r Sys.Date()`"
 output: 
   html_document:
@@ -105,8 +105,6 @@ Answer the following questions. Generate appropriate figures/tables to support y
 
 There are 31,713 women and men w/ a high school education
 
-
-
 1. How does the distribution of wages vary across the different (recoded) occupations? Reorder your chart from above to sort from lowest to highest median. 
 
 It seems that th jobs one would associate with a higher level of education have higher incomes than those that do not.
@@ -130,3 +128,4 @@ All assignments need about one paragraph describing the resources you used (incl
 
 I have conducted a few projects in R while at a program this summer. To create the ggplot, I was missing the last 2 lines of code and used past assignments as reference.
 
+git add (gss_wages.Rmd)
