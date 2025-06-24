@@ -9,9 +9,30 @@ date: "`r format(Sys.time(), '%d %B %Y')`"
 
 # Headings: 
 
+#New YAML Headings
+---
+title: "Readme: About me"
+Author: "Max Taylor"
+output:
+  md_document:
+    variant: gfm # github format
+date: June 20, 2025
+---
+
 You can have headings using the hastags (more hastags mean a smaller font / organization)
 
 ## Code chunks
+```{r}
+#Setting Working Directory
+setwd("C:/Users/mtaylor03/Documents/UChicago SISRM Assignment 1")
+```
+
+```{r}
+#Giving histogram new title
+hist(iris$Sepal.Width)
+```
+
+
 
 You can include code chunks like these below (note that you can use `echo` to include or exclude the code). See that this chunk is called 'naming-chunk' 
 ```{r naming-chunk, echo = FALSE}
