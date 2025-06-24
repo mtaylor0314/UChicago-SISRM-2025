@@ -1,22 +1,10 @@
 ---
-title: "Assignment 1"
+title: "Readme: About me"
 output:
-  Author: "Max Taylor"
   md_document:
     variant: gfm # github format
 date: "`r format(Sys.time(), '%d %B %Y')`"
 ---
-
-```{r}
-#Setting Working Directory
-setwd("C:/Users/mtaylor03/Documents/UChicago SISRM/Assignment 1")
-```
-
-```{r}
-#Giving histogram new title
-hist(iris$Sepal.Width)
-```
-
 
 
 # Headings: 
